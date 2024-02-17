@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="/style.css">
+
+
+    <title>Foodtruck List</title>
+</head>
+<body>
+<header th:insert="menu.html :: header"> </header>
+
+<div>
+    <h2>Foodtruck List</h2>
+    <div th:if="${#authentication.principal.username == 'bartekkierownik'}">
+    <a href="new_foodtruck">Create New foodtruck</a>
+    </div>
+    <br/><br/>
+    <table>
+        <thead>
+        <tr>
+            <th>Foodtruck Id</th>
+            <th>City</th>
+            <th>Postal Code</th>
+            <th>Name</th>
+            <th>Supervisor ID</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="foodtruck : ${lft}">
+            <td th:text="${foodtruck.id_foodtruck}">Foodtruck ID</td>
+            <td th:text="${foodtruck.city}">City</td>
+            <td th:text="${foodtruck.postal_code}">Postal Code</td>
+            <td th:text="${foodtruck.name}">Name</td>
+            <td th:text="${foodtruck.id_supervisor.id_employee}">Supervisor ID</td>
+            <div th:if="${#authentication.principal.username == 'bartekkierownik'}">
+            <td>
+                <a th:href="@{'/edit_foodtruck/' + ${foodtruck.id_foodtruck}}">Edit</a>
+                &nbsp;&nbsp;&nbsp;
+                <a th:href="@{'/delete_foodtruck/' + ${foodtruck.id_foodtruck}}">Delete</a>
+            </td>
+
+            </div>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

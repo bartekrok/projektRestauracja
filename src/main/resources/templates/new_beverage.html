@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Beverage</title>
+    <link rel="stylesheet"  href="/style.css">
+
+
+</head>
+<body>
+<header th:insert="menu.html :: header"> </header>
+
+<div>
+    <h2>Create New Beverage</h2>
+    <br />
+    <form action="#" th:action="@{/save_beverage}" th:object="${beverage}" method="post">
+        <table>
+            <tr>
+                <td>Description</td>
+                <td><input type="text" th:field="*{description}" /></td>
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td><input type="number" th:field="*{price}" /></td>
+
+            </tr>
+
+            <tr>
+                <td>Photo</td>
+                <td><input type="text" th:field="*{photo}" /></td>
+            </tr>
+        </table>
+        <button type="submit">Save</button>
+    </form>
+</div>
+
+</body>
+</html>

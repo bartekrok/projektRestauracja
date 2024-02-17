@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet"  href="/style.css">
+
+
+  <title>Burger List</title>
+</head>
+<body>
+<header th:insert="menu.html :: header"> </header>
+
+<div>
+  <h2>Burger List</h2>
+  <div th:if="${#authentication.principal.username == 'bartekkierownik'}">
+  <a href="new_burger">Create New burger</a>
+  </div>
+  <br/><br/>
+  <table>
+    <thead>
+    <tr>
+      <th>Burger ID</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Photo</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="burger : ${lb}">
+      <td th:text="${burger.id_burger}">Burger ID</td>
+      <td th:text="${burger.description}">Description</td>
+      <td th:text="${burger.price}">Price</td>
+      <td><img th:src="@{${burger.photo}}" alt="Burger Photo"/>Photo</td>
+      <div th:if="${#authentication.principal.username == 'bartekkierownik'}">
+      <td>
+        <a th:href="@{'/edit_burger/' + ${burger.id_burger}}">Edit</a>
+        &nbsp;&nbsp;&nbsp;
+        <a th:href="@{'/delete_burger/' + ${burger.id_burger}}">Delete</a>
+      </td>
+      </div>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:sec="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new book</title>
+    <link rel="stylesheet"  href="/style.css">
+
+
+</head>
+<body>
+<header id="menu">
+
+<ul>
+    <li><a href="beverage_list">Beverage List</a></li>
+    <li><a href="burger_list">Burger List</a></li>
+    <li><a href="sides_list">Sides List</a></li>
+    <li><a href="employee_list">Employee List</a></li>
+    <li><a href="foodtruck_list">FoodTruck List</a></li>
+    <li><a href="foodtruckbeverage_list">FoodTruck's Beverage List</a></li>
+    <li><a href="foodtruckburger_list">FoodTruck's Burger List</a></li>
+    <li><a href="foodtrucksides_list">FoodTruck's Sides List</a></li>
+
+    <a sec:authorize=
+               "!isAuthenticated()" th:href=
+               "@{/login}">Login</a>
+    <a sec:authorize=
+               "isAuthenticated()" th:href=
+               "@{/logout}">Logout</a>
+
+</ul>
+</header>
+
+
+</body>
+</html>

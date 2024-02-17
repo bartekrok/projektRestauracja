@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Create New Foodtruck's Burger</title>
+  <link rel="stylesheet"  href="/style.css">
+
+</head>
+<body>
+<header th:insert="menu.html :: header"> </header>
+
+<div>
+  <h2>Create New Foodtruck's Burger</h2>
+  <br />
+  <form action="#" th:action="@{/save_foodtruckburger}" th:object="${foodtruckburger}" method="post">
+    <table>
+      <tr>
+        <td>ID Foodtruck</td>
+        <td><input type="text" th:field="*{id_foodtruck}" /></td>
+      </tr>
+      <tr>
+        <td>ID Burger</td>
+        <td><input type="text" th:field="*{id_burger}" /></td>
+
+      </tr>
+    </table>
+    <button type="submit">Save</button>
+  </form>
+</div>
+
+</body>
+</html>

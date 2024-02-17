@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="/style.css">
+
+
+    <title>Beverage List</title>
+</head>
+<body>
+<header th:insert="menu.html :: header"> </header>
+
+<div>
+    <h2>Beverage List</h2>
+    <div th:if="${#authentication.principal.username == 'bartekkierownik'}">
+    <a href="new_beverage">Create New Beverage</a>
+    </div>
+    <br/><br/>
+    <table>
+        <thead>
+        <tr>
+            <th>Beverage Id</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Photo</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="beverage : ${lb}">
+            <td th:text="${beverage.id_beverage}">Beverage ID</td>
+            <td th:text="${beverage.description}">Description</td>
+            <td th:text="${beverage.price}">Price</td>
+            <td><img th:src="@{${beverage.photo}}" alt="Beverage Photo"/>Photo</td>
+            <div th:if="${#authentication.principal.username == 'bartekkierownik'}">
+            <td>
+                <a th:href="@{'/edit_beverage/' + ${beverage.id_beverage}}">Edit</a>
+                &nbsp;&nbsp;&nbsp;
+                <a th:href="@{'/delete_beverage/' + ${beverage.id_beverage}}">Delete</a>
+            </td>
+            </div>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head xmlns:th="http://www.thymeleaf.org">
+  <meta charset="UTF-8">
+  <link rel="stylesheet"  href="/style.css">
+
+
+  <title>Edit Foodtruck's Sides</title>
+</head>
+<body>
+<header th:insert="menu.html :: header"> </header>
+
+<div>
+  <h2>Edit Foodtruck's Sides</h2>
+  <br />
+  <form action="#" th:action="@{/save_foodtrucksides}" th:object="${foodtrucksides}" method="post">
+    <table>
+      <tr>
+        <td>Foodtruck's Sides ID:</td>
+        <td><input type="text" th:field="*{id}" readonly="readonly" /></td>
+      </tr>
+      <tr>
+        <td>ID Foodtruck</td>
+        <td><input type="text" th:field="*{id_foodtruck}" /></td>
+      </tr>
+      <tr>
+        <td>ID Sides</td>
+        <td><input type="text" th:field="*{id_sides}" /></td>
+      </tr>
+    </table>
+    <button type="submit">Save</button>
+  </form>
+</div>
+</body>
+</html>

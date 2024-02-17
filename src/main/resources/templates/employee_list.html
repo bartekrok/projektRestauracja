@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="/style.css">
+
+
+    <title>Employee List</title>
+</head>
+<body>
+<header th:insert="menu.html :: header"> </header>
+
+<div>
+    <h2>Employee List</h2>
+    <div th:if="${#authentication.principal.username == 'bartekkierownik'}">
+    <a href="new_employee">Create New Employee</a>
+    </div>
+    <br/><br/>
+    <table>
+        <thead>
+        <tr>
+            <th>Employee ID</th>
+            <th>Name</th>
+            <th>Last Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee : ${le}">
+            <td th:text="${employee.id_employee}">Employee ID</td>
+            <td th:text="${employee.name}">Name</td>
+            <td th:text="${employee.last_name}">Last Name</td>
+            <div th:if="${#authentication.principal.username == 'bartekkierownik'}">
+            <td>
+                <a th:href="@{'/edit_employee/' + ${employee.id_employee}}">Edit</a>
+                &nbsp;&nbsp;&nbsp;
+                <a th:href="@{'/delete_employee/' + ${employee.id_employee}}">Delete</a>
+            </td>
+            </div>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet"  href="/style.css">
+
+
+  <title>Foodtruck's Sides List</title>
+</head>
+<body>
+<header th:insert="menu.html :: header"> </header>
+
+<div>
+  <h2>Foodtruck's sides List</h2>
+  <div th:if="${#authentication.principal.username == 'bartekkierownik'}">
+  <a href="new_foodtrucksides">Create New Foodtruck's Sides</a>
+  </div>
+  <br/><br/>
+  <table>
+    <thead>
+    <tr>
+
+      <th>Foodtruck ID</th>
+      <th>ID Sides</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="foodtrucksides : ${lfts}">
+      <td th:text="${foodtrucksides.id_foodtruck}">Foodtruck ID</td>
+
+      <td th:text="${foodtrucksides.id_sides}">Sides ID</td>
+      <div th:if="${#authentication.principal.username == 'bartekkierownik'}">
+      <td>
+        <a th:href="@{'/edit_foodtrucksides/' + ${foodtrucksides.id}}">Edit</a>
+
+        <a th:href="@{'/delete_foodtrucksides/' + ${foodtrucksides.id}}">Delete</a>
+      </td>
+      </div>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

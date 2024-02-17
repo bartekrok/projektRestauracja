@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet"  href="/style.css">
+
+
+  <title>Foodtruck's Beverage List</title>
+</head>
+<body>
+<header th:insert="menu.html :: header"> </header>
+
+<div>
+  <h2>Foodtruck's Beverage List</h2>
+  <div th:if="${#authentication.principal.username == 'bartekkierownik'}">
+  <a href="new_foodtruckbeverage">Create New Foodtruck's Beverage</a>
+  </div>
+  <br/><br/>
+  <table>
+    <thead>
+    <tr>
+      <th>Foodtruck ID</th>
+      <th>Beverage ID</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="foodtruckbeverage : ${lftb}">
+      <td th:text="${foodtruckbeverage.id_foodtruck}">Foodtruck ID</td>
+
+      <td th:text="${foodtruckbeverage.id_beverage}">Beverage ID</td>
+      <div th:if="${#authentication.principal.username == 'bartekkierownik'}">
+      <td>
+        <a th:href="@{'/edit_foodtruckbeverage/' + ${foodtruckbeverage.id}}">Edit</a>
+
+        <a th:href="@{'/delete_foodtruckbeverage/' + ${foodtruckbeverage.id}}">Delete</a>
+      </td>
+      </div>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
